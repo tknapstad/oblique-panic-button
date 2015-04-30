@@ -1,5 +1,5 @@
-oblique.ino
-data.h
-data.cpp
-randomiser.h
-randomiser.cpp
+firmware/oblique.cpp
+firmware/data.h
+firmware/data.cpp
+firmware/randomiser.h
+firmware/randomiser.cpp
