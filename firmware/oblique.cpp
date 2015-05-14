@@ -1,16 +1,15 @@
 #include "application.h"
 #include "randomiser.h"
 #include "data.h"
-
-#define DEBOUNCE_TIMEOUT 20
+#include "button.h"
 
 int buttonPin = D2;
+int buttonLedPin = A0;
+
 int ledPin    = D7;
 
-volatile unsigned long timestamp = 0;
-volatile bool buttonPressed = 0;
-
 Data data;
+Button button;
 
 void test(USARTSerial* serial)
 {
@@ -32,30 +31,32 @@ void setup() {
     RGB.control(false);
 
     pinMode(ledPin, OUTPUT);
-    pinMode(buttonPin, INPUT);
 
-    attachInterrupt(buttonPin, onButtonPressedISR, RISING);
+    button.init(buttonPin, buttonLedPin);
+//    attachInterrupt(buttonPin, onButtonPressedISR, FALLING);
+    attachInterrupt(buttonPin, &Button::buttonPressedISR, FALLING);
 
     Serial.begin(9600);
-    while(!Serial.available()) SPARK_WLAN_Loop();
+    //while(!Serial.available()) SPARK_WLAN_Loop();
 
-    Serial1.begin(9600);
+    //Serial1.begin(9600);
 
-    Serial.println("Hello spark");
-    Serial.print("Oblique count: ");
-//    Serial.println(obliqueCount, DEC);
-    test(&Serial1);
-    data.addUserEntry("testing testing");
+    //data.addUserEntry("testing testing");
 }
 
 void loop() {
-    digitalWrite(ledPin, HIGH);
-    delay(1000);
-    digitalWrite(ledPin, LOW);
-    delay(1000);
+//    digitalWrite(ledPin, HIGH);
+//    delay(1000);
+//    digitalWrite(ledPin, LOW);
+//    delay(1000);
 
-    if (buttonPressed) {
+    button.cycleLed();
+    delay(100);
+    if (button.pressed()) {
+        Serial.println("Button pressed");
+        button.flash();
         printRandomEntry();
+        button.clearPress();
     }
 }
 
@@ -63,15 +64,6 @@ void printRandomEntry() {
     //int entry = randomEntry();
 //    Serial1.println(oblique_4th_ed[entry]);
     //Serial.println(oblique_entries[entry]);
-}
-
-void onButtonPressedISR() {
-    if (millis() - timestamp < DEBOUNCE_TIMEOUT) {
-        return;
-    }
-
-    timestamp = millis();
-    buttonPressed = true;
 }
 
 bool coinFlip()

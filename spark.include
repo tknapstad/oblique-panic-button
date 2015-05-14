@@ -1,4 +1,6 @@
 firmware/oblique.cpp
+firmware/button.h
+firmware/button.cpp
 firmware/data.h
 firmware/data.cpp
 firmware/randomiser.h
