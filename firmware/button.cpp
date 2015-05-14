@@ -68,7 +68,6 @@ void Button::clearPress()
 
 void Button::buttonPressedISR()
 {
-    Serial.println("ISR triggered");
     if (millis() - timestamp < DEBOUNCE_TIMEOUT) {
         return;
     }
