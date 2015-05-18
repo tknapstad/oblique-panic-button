@@ -16,11 +16,6 @@ void test(USARTSerial* serial)
     Serial.println((int)serial, HEX);
 }
 
-/**
- * Returns true or false randomly
- */
-bool coinFlip();
-
 void onButtonPressedISR();
 
 void printRandomEntry();
@@ -64,9 +59,4 @@ void printRandomEntry() {
     //int entry = randomEntry();
 //    Serial1.println(oblique_4th_ed[entry]);
     //Serial.println(oblique_entries[entry]);
-}
-
-bool coinFlip()
-{
-    return random(2);
 }

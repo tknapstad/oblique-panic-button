@@ -7,7 +7,7 @@ Randomiser::Randomiser()
     memset(lastEntries, -1, AVOID_REPEAT_RANDOM * sizeof(int));
 }
 
-int Randomiser::random(int max)
+int Randomiser::random(int max) const
 {
     int entry = -1;
     do
@@ -21,8 +21,12 @@ int Randomiser::random(int max)
     return entry;
 }
 
+bool Randomiser::coinFlip() const
+{
+    return random(2);
+}
 
-bool Randomiser::entryInLastEntries(int entry)
+bool Randomiser::entryInLastEntries(int entry) const
 {
     for(int i = 0; i < AVOID_REPEAT_RANDOM; i++)
     {

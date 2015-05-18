@@ -11,13 +11,25 @@ class Randomiser
 {
 public:
     Randomiser();
-    int random(int max);
+
+    /**
+     * Returns a random number in the range [0, max]
+     * The returned value will not be repeated until at least
+     * AVOID_REPEAT_RANDOM calls.
+     */
+    int random(int max) const;
+
+    /**
+     * Returns true or false randomly
+     */
+    bool coinFlip() const;
+
 
 private:
-    bool entryInLastEntries(int entry);
+    bool entryInLastEntries(int entry) const;
 
-    int lastEntries[AVOID_REPEAT_RANDOM];
-    int lastEntryIndex;
+    mutable int lastEntries[AVOID_REPEAT_RANDOM];
+    mutable int lastEntryIndex;
 };
 
 #endif // _RANDOMISER_H_
