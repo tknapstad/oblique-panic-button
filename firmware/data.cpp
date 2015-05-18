@@ -149,5 +149,7 @@ const char * const Data::oblique_entries[] = {
     "First work alone, then work in unusual pairs.",
     "What most recently impressed you?\nHow is it similar?\nWhat can you learn from it?\nWhat could you take from it?",
     "Take away as much mystery as possible.\nWhat is left?",
+    // Other
+    "Unexpect the expected",
 	0
 	};
