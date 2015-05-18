@@ -1,0 +1,11 @@
+firmware/oblique.cpp
+firmware/button.h
+firmware/button.cpp
+firmware/data.h
+firmware/data.cpp
+firmware/randomiser.h
+firmware/randomiser.cpp
+firmware/printer.h
+firmware/printer.cpp
+lib/Adafruit-Thermal-Printer-Library/Adafruit_Thermal.h
+lib/Adafruit-Thermal-Printer-Library/Adafruit_Thermal.cpp
