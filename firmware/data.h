@@ -5,6 +5,7 @@
 #define MAX_USER_ENTRY_LENGTH   120
 
 #include "randomiser.h"
+#include <stdint.h>
 
 class Data
 {
@@ -29,11 +30,13 @@ public:
     bool addUserEntry(const char* entry);
 
 private:
-    void countObliqueEntries();
+    uint16_t countObliqueEntries() const;
 
     static char user_entries[MAX_USER_ENTRIES][MAX_USER_ENTRY_LENGTH];
     static const char * const oblique_entries[];
-    static int obliqueCount;
+
+    const uint16_t obliqueCount;
+    Randomiser rnd;
 };
 
 #endif // _DATA_H_

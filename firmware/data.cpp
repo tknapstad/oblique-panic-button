@@ -2,16 +2,14 @@
 #include <string.h>
 
 Data::Data()
+    : obliqueCount(countObliqueEntries())
 {
-    countObliqueEntries();
 }
-
 
 const char * Data::getRandomEntry() const
 {
-
-
-    return 0;
+    int entry = rnd.random(obliqueCount);
+    return oblique_entries[entry];
 }
 
 const char * Data::getRandomUserEntry(bool deleteEntry)
@@ -31,15 +29,14 @@ bool Data::addUserEntry(const char* entry)
     return true;
 }
 
-void Data::countObliqueEntries()
+uint16_t Data::countObliqueEntries() const
 {
-    obliqueCount = 0;
-    while(oblique_entries[obliqueCount]) {
-        obliqueCount++;
+    uint16_t count = 0;
+    while(oblique_entries[count]) {
+        count++;
     }
+    return count;
 }
-
-int Data::obliqueCount = 0;
 
 char Data::user_entries[MAX_USER_ENTRIES][MAX_USER_ENTRY_LENGTH] = {0};
 
@@ -47,12 +44,9 @@ const char * const Data::oblique_entries[] = {
 	"Abandon desire",
 	"Abandon normal instructions",
 	"Accept advice",
-	"Adding on",
 	"A line has two sides",
 	"Always the first steps",
 	"Ask people to work against their better judgement",
-	"Ask your body",
-	"Be dirty",
 	"Be extravagant",
 	"Be less critical",
 	"Breathe more deeply",
@@ -88,25 +82,21 @@ const char * const Data::oblique_entries[] = {
 	"Go to an extreme, come part way back",
 	"How would someone else do it?",
 	"How would you have done it?",
-	"In total darkness, or in a very large room, very quietly",
+	"In total darkness,\nor in a very large room,\nvery quietly",
 	"Is it finished?",
 	"Is something missing?",
 	"Is the style right?",
-	"It is simply a matter or work",
 	"Just carry on",
 	"Listen to the quiet voice",
 	"Look at the order in which you do things",
 	"Magnify the most difficult details",
-	"Make it more sensual",
 	"Make what's perfect more human",
 	"Move towards the unimportant",
 	"Not building a wall; making a brick",
-	"Once the search has begun, something will be found",
-	"Only a part, not the whole",
+	"Once the search has begun,\nsomething will be found",
+	"Only a part,\nnot the whole",
 	"Only one element of each kind",
 	"Openly resist change",
-	"Pae White's non-blank graphic metacard",
-	"Question the heroic",
 	"Remember quiet evenings",
 	"Remove a restriction",
 	"Repetition is a form of change",
@@ -118,8 +108,8 @@ const char * const Data::oblique_entries[] = {
 	"Take a break",
 	"Take away the important parts",
 	"The inconsistency principle",
-	"The most easily forgotten thing is the most important",
-	"Think - inside the work -outside the work",
+	"The most easily forgotten thing\nis the most important",
+	"Think - \ninside the work - \noutside the work",
 	"Tidy up",
 	"Try faking it",
 	"Turn it upside down",
@@ -134,7 +124,7 @@ const char * const Data::oblique_entries[] = {
 	"What context would look right?",
 	"What is the simplest solution?",
 	"What mistakes did you make last time?",
-	"What to increase? What to reduce? What to maintain?",
+	"What to increase?\nWhat to reduce?\nWhat to maintain?",
 	"What were you really thinking about just now?",
 	"What wouldn't you do?",
 	"What would your closest friend do?",
@@ -153,7 +143,6 @@ const char * const Data::oblique_entries[] = {
     "What would make this really successful?",
     "Who would make this really successful?",
     "How would you explain this to your parents?",
-    "What were the branch points in\nthe evolution of this entity?",
     "Back up a few steps.\nWhat else could you have done?",
     "When is it for?\nWho is it for?",
     "What do you do?\nNow, what do you do best?",
